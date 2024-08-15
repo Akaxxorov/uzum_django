@@ -5,6 +5,13 @@ class ProductImageStackedInline(StackedInline):
     model = ProductImage
     fields = 'image', 'product'
 
+@register(Product)
+class ProductModelAdmin(ModelAdmin):
+    inlines = ProductImageStackedInline,
 
 
+
+@register(Category)
+class CategoryModelAdmin(ModelAdmin):
+    pass
 
