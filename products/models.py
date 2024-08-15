@@ -20,7 +20,12 @@ class Product(Model):
     quantity = PositiveIntegerField(default=1)
     category = ForeignKey(Category, on_delete=CASCADE,related_name='products')
 
+    def __str__(self):
+        return self.name
 
 class ProductImage(Model):
     image = ImageField(upload_to='products')
     Product = ForeignKey(Product, on_delete=CASCADE, related_name='images')
+
+    def __str__(self):
+        return self.name
