@@ -1,18 +1,23 @@
-from django.contrib.admin import ModelAdmin, register ,StackedInline
-from .models import Category,Product,ProductImage
+from django.contrib.admin import ModelAdmin, register, StackedInline
+from .models import Category, Product, ProductImage, Color
+
 
 class ProductImageStackedInline(StackedInline):
     model = ProductImage
     fields = 'image', 'product'
 
+
+class ColorStackedInline(StackedInline):
+    model = Color
+    fields = 'name', 'product'
+
+
 @register(Product)
 class ProductModelAdmin(ModelAdmin):
-    inlines = ProductImageStackedInline,
-    list_display = 'name', 'category' ,'narxi', 'quantity'
-
+    inlines = ProductImageStackedInline, ColorStackedInline
+    list_display = 'name', 'category', 'price', 'quantity'
 
 
 @register(Category)
 class CategoryModelAdmin(ModelAdmin):
     pass
-
